@@ -1,0 +1,9 @@
+type User {
+  id: ID! @unique
+  macGuffins: [MacGuffin!]!
+}
+
+type MacGuffin {
+  id: ID! @unique
+  owners: [User!]!
+}
