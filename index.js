@@ -11,13 +11,19 @@ async function main() {
   const macGuffin2 = await prisma.createMacGuffin({
     owners: { connect: { id: user2.id } }
   });
-  const queryMcguffins = await prisma.macGuffins({ where: {
+  const queryMcguffins1 = await prisma.macGuffins({ where: {
     OR: {
       id: macGuffin2.id,
       owners_some: { id: user1.id }
     }
   }});
-  console.log(queryMcguffins);
+  console.log(queryMcguffins1);
+  const queryMcguffins2 = await prisma.macGuffins({ where: {
+    OR: {
+      owners_some: { id: user1.id }
+    }
+  }});
+  console.log(queryMcguffins2);
 }
 
 main().catch(e => console.error(e));
